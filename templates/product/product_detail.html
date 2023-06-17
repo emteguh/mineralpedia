@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col mb-3">
+            <h3>Detail Product</h3>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <p class="card-text">{{product.description}}</p>
+                  <p>{{product.price}} | <a href="{% url 'product:product-order' product.pk %}" class="btn btn-primary">Order Now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+    

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col mb-2">
+            <h2>Order Page</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <form method=POST>
+                {% csrf_token %}
+                <table>
+                    {{form.as_table}}
+                </table>
+                <br>
+                <button class="btn btn-primary" type="submit">Checkout</button>
+            </form>
+            <script>
+                // Mengambil elemen bidang quantity dan total_amount
+                const quantityInput = document.getElementById('id_quantity');
+                const totalAmountInput = document.getElementById('id_total_amount');
+                const price = {{ price }};  // Mendapatkan harga dari konteks
+            
+                // Menambahkan event listener untuk perubahan nilai pada bidang quantity
+                quantityInput.addEventListener('change', () => {
+                    // Mengambil nilai quantity
+                    const quantity = parseFloat(quantityInput.value);
+            
+                    // Menghitung total_amount
+                    const totalAmount = quantity * price;
+            
+                    // Menetapkan nilai total_amount pada input field
+                    totalAmountInput.value = totalAmount.toFixed(2);
+                });
+            </script>
+        </div>
+    </div>
+</div>
+    
+
+{% endblock content %}
+    
